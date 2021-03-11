@@ -7,7 +7,6 @@ RUN apk --update add nodejs yarn npm bash
 COPY --from=0 /usr/local/share/.config/yarn/global/node_modules /usr/local/share/.config/yarn/global/node_modules
 COPY --from=0 /usr/local/bin /usr/local/bin
 COPY aws-lambda-rie /usr/local/bin
-
 COPY entrypoint.sh /root/entrypoint.sh
 
 ENV PATH=/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin

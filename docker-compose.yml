@@ -5,3 +5,10 @@ services:
       - ./test-src:/var/task
     ports:
       - '9005:8080'
+  chromium:
+    build: with-chromium
+    entrypoint: bash
+    volumes:
+      - ./test-src:/var/task
+    ports:
+      - '9005:8080'
