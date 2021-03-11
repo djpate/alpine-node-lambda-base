@@ -8,9 +8,14 @@ COPY --from=0 /usr/local/share/.config/yarn/global/node_modules /usr/local/share
 COPY --from=0 /usr/local/bin /usr/local/bin
 COPY aws-lambda-rie /usr/local/bin
 
-ENV LAMBDA_TASK_ROOT=/var/task
-WORKDIR $LAMBDA_TASK_ROOT
-COPY entrypoint.sh entrypoint.sh
+COPY entrypoint.sh /root/entrypoint.sh
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENV PATH=/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin
+ENV LD_LIBRARY_PATH=/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/lib
+ENV LAMBDA_TASK_ROOT=/var/task
+ENV LAMBDA_RUNTIME_DIR=/var/runtime
+
+WORKDIR $LAMBDA_TASK_ROOT
+
+ENTRYPOINT [ "/root/entrypoint.sh" ]
 CMD [ "index.handler" ]

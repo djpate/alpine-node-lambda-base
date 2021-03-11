@@ -1,3 +1,7 @@
 services:
   test:
     build: .
+    volumes:
+      - ./test-src:/var/task
+    ports:
+      - '9005:8080'
