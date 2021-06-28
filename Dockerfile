@@ -1,9 +1,10 @@
-FROM alpine:3.13
-RUN apk --update add nodejs yarn npm cmake autoconf automake libtool binutils libexecinfo-dev python2 gcc make g++ zlib-dev --no-cache
+FROM alpine:latest
+RUN apk --update add python3 nodejs yarn npm cmake autoconf automake libtool binutils libexecinfo-dev python2 gcc make g++ zlib-dev --no-cache
 RUN yarn global add aws-lambda-ric
 
-FROM zenika/alpine-chrome:86-with-node-12
-USER root
+FROM zenika/alpine-chrome:89-with-node-14
+
+
 RUN apk --update add bash
 COPY --from=0 /usr/local/share/.config/yarn/global/node_modules /usr/local/share/.config/yarn/global/node_modules
 COPY --from=0 /usr/local/bin /usr/local/bin
