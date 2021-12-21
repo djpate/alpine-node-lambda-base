@@ -3,8 +3,7 @@ RUN apk --update add python3 nodejs yarn npm cmake autoconf automake libtool bin
 RUN yarn global add aws-lambda-ric
 
 FROM zenika/alpine-chrome:89-with-node-14
-
-
+USER root
 RUN apk --update add bash
 COPY --from=0 /usr/local/share/.config/yarn/global/node_modules /usr/local/share/.config/yarn/global/node_modules
 COPY --from=0 /usr/local/bin /usr/local/bin
